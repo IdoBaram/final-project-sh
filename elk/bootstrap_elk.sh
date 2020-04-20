@@ -37,10 +37,10 @@ systemctl start kibana.service
 # install Logstash
 apt-get install  --quiet -y logstash=1:$ELK_VERSION-1 
 apt-get install --quiet -y filebeat
-# copy over configs
-cp -R /home/ubuntu/elk/elk/configs/logstash/* /etc/logstash/conf.d/
-systemctl enable logstash.service
-systemctl start logstash.service
+## copy over configs
+#cp -R /home/ubuntu/elk/elk/configs/logstash/* /etc/logstash/conf.d/
+#systemctl enable logstash.service
+#systemctl start logstash.service
 
 
 # Smoke tests
