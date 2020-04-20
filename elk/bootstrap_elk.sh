@@ -24,6 +24,7 @@ echo "done elk"
 sleep 10
 
 # copy over configs
+mkdir /etc/elasticsearch/
 cp /home/ubuntu/elk/elk/configs/elasticsearch/elasticsearch.yml /etc/elasticsearch/
 /bin/systemctl daemon-reload
 /bin/systemctl enable elasticsearch.service
