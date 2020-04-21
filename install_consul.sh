@@ -83,41 +83,6 @@ TimeoutStopSec=5
 WantedBy=multi-user.target
 EOF
 
-sudo tee /etc/consul.d/web.json > /dev/null <<EOF
-{
-  "services": [
-    {
-      "id": "promethues",
-      "name": "promethues",
-      "port": 9090,
-	  "tags": ["promethues"],
-      "checks": [
-        {
-        "name": "promethues on port 9090",
-		"tcp": "localhost:9090",
-        "interval": "5s",
-        "timeout": "20s"
-        }
-      ]
-    },
-    {
-	"id": "grafana",
-    "name": "grafana",
-    "tags": ["grafana"],
-    "port": 3000,
-    "checks": [
-        {
-        "name": "grafana on port 3000",
-		"tcp": "localhost:3000",
-        "interval": "30s",
-        "timeout": "60s"
-        }
-      ]
-    }
-  ]
-}
-EOF
-
 systemctl daemon-reload
 systemctl enable consul.service
 systemctl start consul.service
