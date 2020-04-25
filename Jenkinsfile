@@ -21,12 +21,12 @@ script {
 stage("verify dockers") {
 sh "docker images"
 }
-stage("register image") {
-withDockerRegistry( [credentialsId: 'dockerhub', url: ''] ) {
-    def app.push()
-    def db.push()
-}
-}
+// stage("register image") {
+// withDockerRegistry( [credentialsId: 'dockerhub', url: ''] ) {
+//     def app.push()
+//     def db.push()
+// }
+// }
 stage("deploy crud-app") {
     sh "aws eks --region us-east-1 update-kubeconfig --name final_course_eks"
     sh "chmod +x ./*"
