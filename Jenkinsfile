@@ -22,9 +22,6 @@ withDockerRegistry( [credentialsId: 'dockerhub', url: ''] ) {
     app.push()
     db.push()
 }
-script {
-    def
-}
 }
 stage("deploy crud-app") {
     sh "aws eks --region us-east-1 update-kubeconfig --name final_course_eks"
