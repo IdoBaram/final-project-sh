@@ -7,8 +7,8 @@ stage('Clone sources') {
 // customImage = 
 // docker.build("idobaram/crud-app" + ":latest") 
 // }
-stage("verify dockers") {
-script: "docker container rm -f \$(docker ps -aq)"
+script {
+def planResults = sh(returnStdout: true, script: "docker container rm -f \$(docker ps -aq)")
 // sh "docker rm -vf \$(docker ps -a -q)"
 }
 script {
