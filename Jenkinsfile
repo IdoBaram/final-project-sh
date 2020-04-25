@@ -9,6 +9,7 @@ stage('Clone sources') {
 // }
 stage("verify dockers") {
 sh "docker container rm -f \$(docker ps -aq)"
+sh "docker images purge"
 }
 script {
         def app = docker.build("idobaram/crud-app","-f ${env.WORKSPACE}/Dockerfile-app .")
