@@ -5,7 +5,7 @@ stage('Clone sources') {
 }
 stage("build docker") {
 customImage = 
-docker.build("idobaram/crud-app" + ":$BUILD_NUMBER") 
+docker.build("idobaram/crud-app" + ":latest") 
 }
 stage("verify dockers") {
 sh "docker images"
