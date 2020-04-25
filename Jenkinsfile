@@ -7,10 +7,10 @@ stage('Clone sources') {
 // customImage = 
 // docker.build("idobaram/crud-app" + ":latest") 
 // }
-// script {
-// sh "docker container rm -f \$(docker ps -aq)"
-// sh "docker rm -vf \$(docker ps -a -q)"
-// }
+    // script {
+    // sh "docker container rm -f \$(docker ps -aq)"
+    // sh "docker rm -vf \$(docker ps -a -q)"
+    // }
 script {
         def app = docker.build("idobaram/crud-app","-f ${env.WORKSPACE}/Dockerfile-app .")
         def db = docker.build("idobaram/crud-app-mysql:latest","-f ${env.WORKSPACE}/Dockerfile-mysql .")
@@ -20,8 +20,8 @@ sh "docker images"
 }
 stage("register image") {
 withDockerRegistry( [credentialsId: 'dockerhub', url: ''] ) {
-    app.push()
-    db.push()
+    def app.push()
+    def db.push()
 }
 }
 stage("deploy crud-app") {
