@@ -8,7 +8,7 @@ stage('Clone sources') {
 // docker.build("idobaram/crud-app" + ":latest") 
 // }
 stage("verify dockers") {
-sh "docker container rm -f $$(docker ps -aq)"
+script: "docker container rm -f \$(docker ps -aq)"
 // sh "docker rm -vf \$(docker ps -a -q)"
 }
 script {
