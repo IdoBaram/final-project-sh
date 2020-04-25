@@ -15,4 +15,7 @@ withDockerRegistry( [credentialsId: 'dockerhub', url: ''] ) {
     customImage.push()
 }
 }
+stage("deploy crud-app") {
+    sh "aws eks --region us-east-1 update-kubeconfig --name mid_course_eks"
+}
 } 
