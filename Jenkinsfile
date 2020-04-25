@@ -7,10 +7,10 @@ stage('Clone sources') {
 // customImage = 
 // docker.build("idobaram/crud-app" + ":latest") 
 // }
-    // script {
-    // sh "docker container rm -f \$(docker ps -aq)"
+stage('remove old images') {
+    sh "docker system prune --all"
     // sh "docker rm -vf \$(docker ps -a -q)"
-    // }
+    }
 script {
     withDockerRegistry( [credentialsId: 'dockerhub', url: ''] ) {
     def app = docker.build("idobaram/crud-app","-f ${env.WORKSPACE}/Dockerfile-app .")
