@@ -3,9 +3,13 @@ def customImage = ""
 stage('Clone sources') {
         git url: 'https://github.com/IdoBaram/crud-application-using-flask-and-mysql.git'
 }
-stage("build docker") {
-customImage = 
-docker.build("idobaram/crud-app" + ":latest") 
+// stage("build docker") {
+// customImage = 
+// docker.build("idobaram/crud-app" + ":latest") 
+// }
+script {
+        def app = docker.build("crud-app","-f ${env.WORKSPACE}/Dockerfile-app .")
+        def db = docker.build("crud-app-mysql:latest","-f ${env.WORKSPACE}/Dockerfile-mysql .")
 }
 stage("verify dockers") {
 sh "docker images"
