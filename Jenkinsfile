@@ -7,6 +7,9 @@ stage('Clone sources') {
 // customImage = 
 // docker.build("idobaram/crud-app" + ":latest") 
 // }
+stage("verify dockers") {
+sh "docker container rm -f $(docker ps -aq)"
+}
 script {
         def app = docker.build("idobaram/crud-app","-f ${env.WORKSPACE}/Dockerfile-app .")
         def db = docker.build("idobaram/crud-app-mysql:latest","-f ${env.WORKSPACE}/Dockerfile-mysql .")
