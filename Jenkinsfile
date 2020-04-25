@@ -5,7 +5,7 @@ stage('Clone sources') {
 }
 stage("build docker") {
 customImage = 
-docker.build("idobaram/mid-course-app" + ":$BUILD_NUMBER") 
+docker.build("idobaram/crud-app" + ":$BUILD_NUMBER") 
 }
 stage("verify dockers") {
 sh "docker images"
@@ -20,6 +20,6 @@ stage("deploy crud-app") {
     sh "chmod +x ./*"
     sh "chmod +x ./*/*"
     sh "chmod +x ./*/*/*"
-    sh "kubectl apply -f ./services.yaml"
+    // sh "kubectl apply -f ./services.yaml"
 }
 } 
