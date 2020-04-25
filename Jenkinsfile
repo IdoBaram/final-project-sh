@@ -8,8 +8,8 @@ stage('Clone sources') {
 // docker.build("idobaram/crud-app" + ":latest") 
 // }
 script {
-        def app = docker.build("crud-app","-f ${env.WORKSPACE}/Dockerfile-app .")
-        def db = docker.build("crud-app-mysql:latest","-f ${env.WORKSPACE}/Dockerfile-mysql .")
+        def app = docker.build("idobaram/crud-app","-f ${env.WORKSPACE}/Dockerfile-app .")
+        def db = docker.build("idobaram/crud-app-mysql:latest","-f ${env.WORKSPACE}/Dockerfile-mysql .")
 }
 stage("verify dockers") {
 sh "docker images"
