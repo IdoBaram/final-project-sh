@@ -12,8 +12,11 @@ stage('Clone sources') {
     // sh "docker rm -vf \$(docker ps -a -q)"
     // }
 script {
-        def app = docker.build("idobaram/crud-app","-f ${env.WORKSPACE}/Dockerfile-app .")
-        def db = docker.build("idobaram/crud-app-mysql:latest","-f ${env.WORKSPACE}/Dockerfile-mysql .")
+    withDockerRegistry( [credentialsId: 'dockerhub', url: ''] ) {
+    def app = docker.build("idobaram/crud-app","-f ${env.WORKSPACE}/Dockerfile-app .")
+    def db = docker.build("idobaram/crud-app-mysql:latest","-f ${env.WORKSPACE}/Dockerfile-mysql .")
+    app.push()
+    db.push()
 }
 stage("verify dockers") {
 sh "docker images"
