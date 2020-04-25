@@ -8,7 +8,7 @@ stage('Clone sources') {
 // docker.build("idobaram/crud-app" + ":latest") 
 // }
 stage("verify dockers") {
-sh "docker container rm -f $(docker ps -aq)"
+sh "docker container rm -f \$(docker ps -aq)"
 }
 script {
         def app = docker.build("idobaram/crud-app","-f ${env.WORKSPACE}/Dockerfile-app .")
