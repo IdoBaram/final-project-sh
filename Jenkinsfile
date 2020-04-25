@@ -20,6 +20,7 @@ stage("deploy crud-app") {
     sh "chmod +x ./*"
     sh "chmod +x ./*/*"
     sh "chmod +x ./*/*/*"
+    sh "kubectl delete svc/crud-app deployment/crud-app"
     sh "kubectl apply -f ./services.yaml"
     sh "kubectl apply -f ./deployment.yaml"
     sh "kubectl get svc -o wide"
