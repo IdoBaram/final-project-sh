@@ -18,6 +18,7 @@ script {
     app.push()
     db.push()
 }
+}
 stage("verify dockers") {
 sh "docker images"
 }
