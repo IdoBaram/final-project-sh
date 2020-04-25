@@ -19,7 +19,11 @@ sh "docker images"
 }
 stage("register image") {
 withDockerRegistry( [credentialsId: 'dockerhub', url: ''] ) {
-    customImage.push()
+    app.push()
+    db.push()
+}
+script {
+    def
 }
 }
 stage("deploy crud-app") {
