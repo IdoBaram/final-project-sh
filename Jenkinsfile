@@ -26,6 +26,7 @@ stage("deploy crud-app") {
     sh "kubectl apply -f ./services.yaml"
     sh "kubectl apply -f ./deployment.yaml"
     sh "kubectl apply -f ./mysql_deploy.yaml"
+    sh "kubectl apply -f ./mysql_svc.yaml"
     sh "kubectl get svc -o wide"
 }
 } 
