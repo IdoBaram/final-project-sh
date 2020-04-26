@@ -6,7 +6,7 @@ stage('Clone sources') {
 stage('remove old images') {
     sh "docker system prune --all"
     }
-script {
+script('build and register image') {
     withDockerRegistry( [credentialsId: 'dockerhub', url: ''] ) {
     def app = docker.build("idobaram/crud-app","-f ${env.WORKSPACE}/Dockerfile-app .")
     def db = docker.build("idobaram/crud-app-mysql:latest","-f ${env.WORKSPACE}/Dockerfile-mysql .")
@@ -17,7 +17,7 @@ script {
 stage("verify dockers") {
 sh "docker images"
 }
-stage("deploy crud-app") {
+stage("deploy crud-app to k8s") {
     sh "aws eks --region us-east-1 update-kubeconfig --name final_course_eks"
     sh "chmod +x ./*"
     sh "chmod +x ./*/*"
